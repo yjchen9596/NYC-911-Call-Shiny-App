@@ -1,0 +1,149 @@
+---
+title: "read data- api and csv"
+author: "Yuka Chen"
+date: "`r Sys.Date()`"
+output: html_document
+---
+
+```{r}
+library(tidyverse)
+library(RSocrata)
+library(keyring)
+library(tidyverse)
+library(jsonlite)  
+
+```
+
+```{r}
+
+calls <- read_csv("https://data.cityofnewyork.us/resource/n2zq-pubd.csv")
+#calls <- write_csv(calls, file = "calls.csv")
+```
+
+
+
+From the csv link NYC Open Data provided, we can get 1000 rows and 18 columns. 
+
+Another way to read data by using API (notes: I tried to use the ways we did in class and assignments but it seems not working... so I found this way online"https://rpubs.com/humbertohp/448961)
+
+The API token could not use with key_get because we need `$$` before app_token and other query. 
+
+For this API data request, I asked for 150000 but we can adjust it to the amount we want. We can use csv file first then use this way to get more data for our shiny app. 
+
+```{r}
+
+api_tokn <- "$$app_token=zobY67VSOVvwIKZI1praLtGBR"
+api_endpoint <- "https://data.cityofnewyork.us/resource/n2zq-pubd.json?"
+api_limit <- "&$limit=6000000"
+#api_filter <- "&borough=BRONX"
+nineoneone <- fromJSON(paste0(api_endpoint, api_tokn, api_limit))
+class(nineoneone)
+colnames(nineoneone)
+glimpse(nineoneone)
+
+# nineoneone <- write_csv(calls, file = "nineoneone.csv")
+
+# chr  (5): boro_nm, patrl_boro_nm, radio_code, typ_desc, cip_jobs
+# dbl  (6): cad_evnt_id, nypd_pct_cd, geo_cd_x, geo_cd_y, latitude, longitude
+# dttm (6): create_date, incident_date, add_ts, disp_ts, arrivd_ts, closng_ts
+# time (1): incident_time
+```
+
+
+NYC OpenDATA Exploratory
+
+```{r}
+
+```
+
+
+Census Data
+
+```{r}
+## loading packages
+library(tidycensus)
+library(tidyverse)
+```
+
+```{r}
+library(keyring)
+#key_get("CENSUS_API_KEY_SECURE")
+census_api_key(key_get("CENSUS_API_KEY_SECURE"))
+```
+
+
+```{r}
+age10 <- get_decennial(geography = "state",
+                   variables = "P013001",
+                   year = 2010,
+                   key = key_get("CENSUS_API_KEY_SECURE"))
+```
+```{r}
+nyc <- get_acs(state = "NY",
+                     geography = "tract",
+                     variables = "B19013_001",
+                     geometry = TRUE,
+                     key = Sys.getenv("CENSUS_API_KEY"))
+
+nyc %>%
+  ggplot(aes(fill = estimate)) +
+  geom_sf(color = NA) +
+  coord_sf(crs = 4326) + # 4326 - WGS84, 3857 Mercator
+  scale_fill_viridis_c(option = "magma")
+#head(baltimore)
+```
+
+```{r}
+sites <- data.frame(longitude = request_json$latitude, 
+                     latitude = request_json$longitude)
+sites
+```
+
+```{r}
+sites <- st_as_sf(sites, 
+                  coords = c("longitude", "latitude"),
+                  crs = 4326, agr = "constant") # WGS84
+
+ggplot(data = world) +
+    geom_sf() +
+    geom_sf(data = sites, size = 4, shape = 23, fill = "darkred") +
+    coord_sf(xlim = c(-88, -78), ylim = c(24.5, 33), expand = FALSE)
+```
+
+```{r}
+load_variables(2017, "acs5", cache = TRUE)
+```
+
+ ##NYC Median Income 2020   
+```{r}
+NY <- get_acs(geography = "county", 
+              variables = c(medincome = "B19013_001"), 
+              state = "NY", 
+              year = 2020)
+
+##margin of error
+NY
+```
+
+## clean County Name
+```{r}
+str_replace_all(NY$NAME, "County...........","") -> NY$NAME
+str_replace_all(NY$NAME, "\\s","") -> NY$NAME
+glimpse(NY)
+```
+
+## plot them into a grapgh
+```{r}
+NY %>%
+  mutate(NAME = gsub(" County, NEWYORK", "", NAME)) %>%
+  ggplot(aes(x = estimate, y = reorder(NAME, estimate))) +
+  geom_errorbarh(aes(xmin = estimate - moe, xmax = estimate + moe)) +
+  geom_point(color = "red", size = 3) +
+  labs(title = "Household income by county in NY",
+       subtitle = "2015-2020 American Community Survey",
+       y = "",
+       x = "ACS estimate (bars represent margin of error)")+
+  coord_flip()+
+  theme(axis.text.x = element_text(angle = 55, hjust = 1))
+```
+

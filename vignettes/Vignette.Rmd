@@ -1,0 +1,122 @@
+---
+title: "Vignette - gp-001-YCCLT-911 Calls"
+author: "Tyler Halliwell, Yuka Chen, Chaytanya Kumar, Concillia Mpofu, and Liberty Mudzingwa"
+date: "`r Sys.Date()`"
+output: html_document
+  
+---
+### <span style="color: blue;"> NYC 911 Calls Summary</span>
+
+The point of this app is to analyze 911 calls in New York City. When a NYC resident dials 911, they are connected with a city operator and all data from that call goes into a system called ICAD. ICAD is used by the New York Police Department to obtain information about the reason for the call.
+
+With this app, we would like to study the reported crimes or incidents called in by NYC residents. Important subsets of this data include Borough or time.
+
+This app can be used by anyone, but may be especially helpful for NYC policy makers regarding budgeting for the NPYD or other NYC public services.
+     
+     
+### <span style="color: blue;">Data:</span>
+
+ - primary data is pulled by API from NYC Open Data "https://data.cityofnewyork.us/Public-Safety/NYPD-Calls-for-Service-Year-to-Date-/n2zq-pubd".
+    - we used `slice_sample()` from `{dplyr}` and took 1 million random sample saved as csv file under data folder.
+    - It generally takes 30~50 minutes to load whole 6M+ data on R (rmd in data-raw)
+    - We tried to load the random data directly to our mega data but there are no solution
+    
+    
+#### - Raw Data Description - 911 Calls
+
+ - boro_nm: Name of the Borough
+ - incident_date: Date of when the call occurred 
+ - incident_time: Time of when the call occurred 
+ - patrl_boro_nm: The area of the borough where the call was received
+ - case_types: The reason for the 911 call 
+ - crime_progress: Factor variable that denotes if the call is in progress, non critical, critical, or serious
+ - latitude: Latitude of the caller? or crime
+ - longitude: Longitude of the caller? or crime
+ - arrived_time: Day and time in which an officer arrived to the scene
+ 
+ We manipulated and cleaned the data so that it could be used for our app.
+  - Created an incident_month and incident_time column that would denote which month and hour the 911 called in
+  - created a variable to show the difference in time between 911 call and arrival
+  
+  Besides latitude and longitude, all of these variables are categorical. 
+
+#### -  Censues Data
+
+ - secondary data is from package `{tidycensus}`.
+    - we are able to call out the NYC median income and population by county
+
+### <span style="color: blue;">Literature:</span>
+
+
+Office, J. K. via P. A. (n.d.). Office of the New York City Public Advocate. Office of the New York City Public Advocate. https://www.pubadvocate.nyc.gov/reports/improving-new-york-citys-responses-to-individuals-in-mental-health-crisis/
+
+Bergh, Daniel. “Chi-Squared Test of Fit and Sample Size-A Comparison between a Random Sample Approach and a Chi-Square Value Adjustment Method.” Journal of Applied Measurement, vol. 16, no. 2, 2015, pp. 204–217, pubmed.ncbi.nlm.nih.gov/26075668/
+
+“There’s a Call Reporting a Crime in Progress. How Long Does It Take for the Police to Send a Car in Your Precinct? | New York City by the Numbers.” New York City by the Numbers, 9 May 2019, ibo.nyc.ny.us/cgi-park2/2019/05/theres-a-call-reporting-a-crime-in-progress-how-long-does-it-take-for-the-police-to-send-a-car-in-your-precinct/. 
+
+Verkroost, Florianne. “Building Interactive World Maps in Shiny.” Rviews.rstudio.com, 9 Oct. 2019, rviews.rstudio.com/2019/10/09/building-interactive-world-maps-in-shiny/. Accessed 2 May 2022.
+
+### <span style="color: blue;">Use of App:</span>
+
+#### - Tab Functionality
+
+This app allows the user multiple ways to be selective on what they're seeing.
+
+ - Borough Choice: The user can choose which boroughs to see. To choose a borough, the user can click in the box then click the borough
+ they want to add. To deselect a borough, the user can click on that borough in the box and hit backspace on their keyboard.
+ 
+ - 911 Calls Report Types, Crime Progress, Month Select, and Hour Select: The user is presented with a drop down to select or deselect
+ what they want to see.
+ 
+ - Important note: In the Beta version of this app, December is not included due to data upload limitations.
+
+#### - Data Summary - Tab Description
+
+This tab hosts four sub-tabs that help the user visualize total number of 911 calls, response time, proportion of crimes, and census data (population and income). There is an anova test to compare the mean response time between boroughs.
+
+ - Bar plot Analysis: This tab shows the number of 911 calls received for a select borough(s). The user has the option of select which boroughs they want to see and which month(s) they want to see the data for.
+ 
+ - Box plot Analysis: This tab shows the distribution of 911 calls over the duration of the sampled data.
+ 
+ - Density Plot Analysis: This tab has a graph of the response time over the log of the response time. Since data over time is skewed right, we decided to use the log of the response time. There is also an associated anova test that compares the mean response time across the selected boroughs. Below this, there is a pie chart that shows the proportion of 911 calls by the selected boroughs.
+ 
+ - Census and Survey Data: This tab shows census data by borough and shows 2 graphs on population and median income.
+
+#### - Variable Summary - Tab Description
+
+ - Variable Summary: User can see descriptive statistics on call volume by chosen variable. The users can select which variable they want to see descriptive statistics on: Borough, 911 report types, Crime progress, and months.
+ 
+#### - Time Series - Tab Description
+ 
+This tab has three sub-tabs, but all three sub-tabs give the user an understanding of call volume and reports over time.
+
+ - Time Series Plot: This tab has a lot of functionality the user can utilize to see the number of calls over time. The user can select whether they want to see the how the number of calls change over the course of the year or aggregated throughout the day. The user can also select which call type, the crime progress, and the borough they want to see.
+ 
+ - Gap Time Summary: This tab shows descriptive statistics on the time it takes officers to arrive to the scene. The user can also select which call type, the crime progress, the month, and the borough they want to see. For a lot of cases, the minimum seems to be 0. We believe this is accurate and can occur if someone dials 911 and reports a case where police or other services are already present.
+ 
+ - Chi Square Goodness of Fit Test: We wanted to test to see if the distribution of calls reported is the same distribution as where residents live in NYC. This tab is designed to show all 5 NYC boroughs, so the user can only change which report types they see, which month, and which progress. The Chi Square test is designed to test if the sampled distribution of 911 calls matches the distribution of residents living in each borough. Expected frequency for the Chi Square test come from the population breakdown by borough from the census. 
+
+#### - Map - Tab Description
+ 
+ - Map: The map tab shows a map of the greater NYC area. There are bubbles over each of the NYC boroughs. The diameter of the circle represents the size/amount of the chosen variable.
+ 
+### - Spreadsheet - Tab Description
+
+This tab contains the manipulated data that we used for our other analysis tabs. The user can filter, see, and use the data.
+ 
+### <span style="color: blue;">Coding and Libraries:</span>
+
+ - Packages used for layout: shiny, shinyWidgets, and bslib
+ - Packages used for data cleaning and manipulation: lubridate,zoo, and tidyverse
+ - Packages used for maps: maps, leaflet, and gridExtra
+
+### <span style="color: blue;">Ethical Review:</span> 
+
+
+
+This shiny app's primary data source is collected by Intergraph Computer Aided Dispatch System (ICAD), a system from NYC Police Department which recorded the call takers and dispatchers use to communicate with callers and the NYPD. Each record represents an entry into the system. The data includes entries generated by members of the public as well as self-initiated entries by NYPD Members of Service. It is possible that the records were not accurate or actually happened since the public also have the access to generate the record entries.  
+ 
+Data from NYC OpenData is grouped into five NYC Boroughs that are of different economic classes(by GDP and income levels), different racial demographics and gender ratios. The analysis from our app gives summarized statistics of the daily rate and severity of criminal offences in different boroughs and may lead to economic, racial and gender segregation hence our app should be reserved for a few individuals who will make ethical use of the app, i.e for the allocation/assigning of appropriate security forces to areas of demand during certain times to minimize crime rate.
+ 
+Data from NYC OpenData “does not warranty the completeness, accuracy, content, or fitness for any particular purpose”. We as the app developers, and NYC, are not liable for any deficiencies in the completeness, accuracy, content, or fitness for any particular purpose or use of the public data set. Since our app uses data from “NYC OpenData”, we need to pass this message onto the users.
+

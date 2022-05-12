@@ -1,0 +1,174 @@
+---
+title: "Calling_911API_Data"
+author: Yuka Chen
+date: "r Sys.Date()"
+output: html_document
+---
+```{r}
+library(tidyverse)
+library(hw06pyjchen9596)
+library(lubridate)
+library(keyring)
+library(jsonlite)
+```
+
+Calling by API: https://data.cityofnewyork.us/Public-Safety/NYPD-Calls-for-Service-Year-to-Date-/n2zq-pubd
+
+```{r}
+# #setwd(gp-001-ycclt-911calls/data-raw)
+# #calls <- read_csv("https://data.cityofnewyork.us/resource/n2zq-pubd.csv") only has 1000
+# 
+# ## API - IT TAKES 30 - 40 minutes TO LOAD THE 6M+ DATA
+# api_tokn <- paste0("$$app_token=",key_get("NYC_NINEONEONE"))
+# api_endpoint <- "https://data.cityofnewyork.us/resource/n2zq-pubd.json?"
+# api_limit <- "&$limit=6000000"
+# #api_filter <- "&borough=BRONX"
+# nineoneone <- fromJSON(paste0(api_endpoint, api_tokn, api_limit))
+```
+
+
+
+```{r}
+# # chr  (5): boro_nm, patrl_boro_nm, radio_code, typ_desc, cip_jobs
+# # dbl  (6): cad_evnt_id, nypd_pct_cd, geo_cd_x, geo_cd_y, latitude, longitude
+# # dttm (6): create_date, incident_date, add_ts, disp_ts, arrivd_ts, closng_ts
+# # time (1): incident_time
+# 
+# nineoneone %>% slice_sample(n = 1000000) -> data
+# nineoneone %>% slice_sample(n = 500000) -> data2
+# nineoneone %>% slice_sample(n = 200000) -> data3
+# nineoneone %>% slice_sample(n = 300000) -> data4
+# nineoneone %>% slice_sample(n = 100000) -> data_small
+# 
+# save
+# #write_csv(data,"calls_1m.csv") ## 200MB+ size
+# #write_csv(data2,"calls_500k.csv") ## 145MB+
+# #write_csv(data3,"calls_200k.csv") ## 50MB+
+# #write_csv(data4,"calls_300k.csv") ## 83MB+
+```
+
+```{r}
+## Save data files as rds
+# write_rds(nineoneone,file ="NYPD_Calls_ALL.rds", compress = "gz") saved it in my personal laptop
+# write_rds(data_small,file ="NYPD_Calls_small.rds", compress = "gz")
+# write_rds(data3, file = "NYPD_Calls_Mediam.rds",compress = "gz")
+# write_rds(data, file = "NYPD_Calls_OneM.rds", compress = "gz")
+```
+
+```{r}
+data <-read_rds("NYPD_Calls_OneM.rds")
+```
+
+
+```{r}
+
+calls <- data |> 
+  drop_na() |> 
+  mutate(incident_date = as_date(incident_date),
+         incident_month = month(incident_date),
+         incident_day = day(incident_date),
+         incident_time = hms(incident_time),
+         incident_hour = hour(incident_time),
+         arrivd_ts = ymd_hms(arrivd_ts),
+         call_time =  incident_date + incident_time,
+         gap = difftime(arrivd_ts,call_time,units = "mins"), ##difftime(time1 - time2, units = ..)
+         boro_nm =  na_if(boro_nm, "(null)"), ## replaced (null) with NA
+         patrl_boro_nm =  na_if(patrl_boro_nm, "(null)")) |>
+    rename(case_types = typ_desc,
+         crime_progress = cip_jobs,
+         arrived_time = arrivd_ts) |>  #new_name = old_name
+  select(-cad_evnt_id, -create_date, -nypd_pct_cd, -geo_cd_x, -geo_cd_y, -add_ts, -disp_ts, -closng_ts, -radio_code)
+
+
+# starttime = ymd_hms(paste(dat[,1], dat[,2]))
+```
+
+```{r}
+unique(calls$crime_progress)
+
+##Series case type
+## 16 case types
+calls |> 
+  filter(crime_progress == "Serious") -> a
+a |> 
+  distinct(case_types)
+n_distinct(a$case_types)
+```
+
+
+```{r}
+str_extract(a, "([:alpha:]*)\\:")
+
+```
+
+
+```{r}
+## Non CIP case type
+## 283 case types
+
+calls |> 
+  filter(crime_progress == "Non CIP") -> b
+b |> 
+  distinct(case_types)
+n_distinct(a$case_types)
+```
+
+
+```{r}
+str_extract_all(b, "[[:alpha:]\\:")
+
+```
+
+
+```{r}
+## Non Critical case type
+## 23 case types
+calls |> 
+  filter(crime_progress == "Non Critical") -> c
+c |> 
+  distinct(case_types)
+n_distinct(a$case_types)
+```
+
+
+```{r}
+## Critical case type 
+## 53 case types
+calls |> 
+  filter(crime_progress == "Critical") -> d
+d |> 
+  distinct(case_types)
+n_distinct(a$case_types)
+
+
+```
+
+```{r}
+unique(calls$incident_month)
+
+calls |> 
+  drop_na(incident_day) |> 
+  distinct(incident_day)
+
+calls |> 
+  distinct(incident_month) ## No December...
+
+n_distinct(calls$incident_month)
+n_distinct(calls$incident_hour)
+  
+n_distinct(calls$typ_desc) ## 389 types of reported crimes
+
+## since 200k includes all the months already. We will use 200k (50M file size) for our sample model.
+```
+
+check structure
+```{r}
+str(calls)
+```
+
+```{r}
+class(calls)
+colnames(calls)
+glimpse(calls)
+```
+

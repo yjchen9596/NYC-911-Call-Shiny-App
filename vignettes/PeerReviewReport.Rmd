@@ -1,0 +1,38 @@
+---
+title: "PeerReviewReport"
+author: Tyler Halliwell, Yuka Chen, Chaytanya Kumar, Concillia Mpofu, and Liberty
+  Mudzingwa
+date: "`r Sys.Date()`"
+output: html_document
+---
+
+### Peer Review Progress Report
+ - Project Name: Health Project Plan: Mental Health and the 2020 National Health Interview Survey
+ - Group members: gp001-AAB Andrew Erickson, Binh Minh An Nguyen, Ben Stano
+ - Review by: gp-001-ycclt-911calls Tyler Halliwell, Yuka Chen, Chaytanya Kumar, Concillia Mpofu, Liberty Mudzingwa
+ 
+#### 1. Use Case - who are the users and what questions are you enabling them to answer.
+
+ - Their target audience are users who are healthcare professionals and administrators interested in learning more about factors that contribute to anxiety and depression. 
+ - The users can see potential factors of anxiety and depression and help them identify a person’s condition more easily. Although there are many different metrics to identify anxiety or depression. Maybe the outcome would be surprising to them.
+ - For someone who doesn't have a statistical background. 
+ 
+#### 2. Data Strategy and status - what kind of data are you able to get:
+ - The data is from a National health survey from CDC which contains 600 questions i.e. they have over 600 variables that can be taken into consideration for model design. 
+They need to clean the data with lots of work by selecting the columns they are interested in for their project. 
+ - The team will select a total of 60-80 variables that they think will have a significant impact on the response variable ‘Anxiety', which later can be brought down to the number of the variables that have statistically significant relationship with the response variable ‘Anxiety’.
+ - The team discovered their dataset does not contain diverse variables when they did data cleaning.
+ - The dataset has many biases against LGBTQ ,include the sex and gender which does not have none-binary people options and only have female and male .It has very limited range of body weights, as well as Geographic location is completely lacking. 
+ - The outcome would be based on the response of people who said they are depressed, which is very subjective.
+ - If the person needs to get treated for depression they have to do self-report. 
+
+#### 3. Overall Layout of the App and Workflow - what is the proposed layout and what is the workflow for the users.
+
+ - The team plan to use Tree map by sector points to determine the outcome for categorical variables.
+quan his, cat bar, under the numbers of response (data summary).
+ - The team is also thinking of implementing Classification tree technique  in their modeling. 
+ - One or two modeling tabs based on how well the model works. 
+ - Their plan to use ANOVA test and chi-square to test pre-model statistical analysis. 
+
+
+Next steps: The team plan to filter down variables to allow users to use, if its too many variables might reduce the interests of users because no one would want go through 80+

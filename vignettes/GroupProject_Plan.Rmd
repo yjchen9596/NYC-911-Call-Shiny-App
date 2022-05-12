@@ -1,0 +1,78 @@
+---
+title: "Project Plan"
+author: "Tyler Halliwell, Yuka Chen, Chaytanya Kumar, Concillia Mpofu, Liberty Mudzingwa"
+date: "`r Sys.Date()`"
+output: html_document
+---
+
+### APP Title: New York City 911 Call Analysis
+
+#### Team members:
+
+ - Tyler Halliwell - DATA 613-001
+ - Yuka Chen - DATA 613-001
+ - Chaytanya Kumar - DATA 613-001
+ - Concillia Mpofu - DATA 613-001
+ - Liberty Mudzingwa - DATA 613-001
+
+#### Topic and Data:
+
+Resource management is a big issue in city management. And with recent "Defund the Police" movements, budgets regarding the police and public servants are being questioned. This App will allow users to see 911 call data on an interactive map of New York City. Users will be able to run statistical analysis of 911 call data to see if boroughs have different experiences, need different resources, etc. 
+
+#### Proposed data sources: 
+
+ - Primary source of data is https://data.cityofnewyork.us/Public-Safety/NYPD-Calls-for-Service-Year-to-Date-/n2zq-pubd
+ - We are also planning to use data from census with {tidycensus}
+
+
+#### Status of literature review: 
+
+Tyler and Connie have aggregated some resources. We are looking at R shiny help websites for interactive maps as well as city resource management articles. 
+
+#### Actor/Audience Description: 
+
+This App may tend best to New York City government officials and policy makers. They will be able to see which locations need more resources based on the map and statistical analysis.
+
+#### Questions of Interest:
+
+ - What is the distribution of type of calls reported by the 911 operators in NYC?
+ - Do some boroughs have statistically different distributions of call reports?
+ - Do some months have statistically different distributions of call reports?
+
+#### Fixed or Dynamic Data:
+
+The raw data is dynamic, but for our app it will be fixed, since we're taking a sample from it.
+
+#### General Layout:
+
+We will have 1 tab for an interactive map that will allow users to manipulate what variable they want to see and.
+Another tab will have tables for statistical analysis and summary, which users will be able to select which variable they want to analyze. The last tab will contain the sampled data.
+
+#### APP Theme: 
+
+We will use the Cosmo theme from Bootswatch.
+
+#### Ethics review:
+
+Data from NYC OpenData "does not warranty the completeness, accuracy, content, or fitness for any particular purpose". We as the app developers, and NYC,  are not liable for any deficiencies in the completeness, accuracy, content, or fitness for any particular purpose or use of the public data set. Since our app uses data from "NYC OpenData", we need to pass this message onto the users. 
+
+#### Jobs:
+
+We segmented certain tasks among the group, but we will work with each other if additional help is needed.
+
+ - Tyler: Lit review, shiny coding-table tab, vignette
+ - Yuka: API for both data sources, Shiny coding-statistics tab
+ - Chaytanya: Shiny coding layout and organization, Vignette
+ - Concillia: Lit review, Shiny coding-map tab
+ - Liberty: Data cleaning, Shiny coding-map tab
+
+We will collaborate and communicate over Zoom and WhatsApp.Regarding branching, each person will have their own branch. 1 person will push the main branch when we have a group meeting and we can merge to pull the latest submission/push.
+
+#### Below is an outline of some major phases and milestones with associated due dates.
+
+ - APIs: 3/28
+ - Data Cleaning and exploration and Peer Review: 4/4
+ - Data manipulation and shiny structure and Prog Report: 4/11
+ - Rough draft of app and Vignette: 4/25
+ - Rehearsals on 4/31 and 5/1
+ - Push to GitHub on 5/1
