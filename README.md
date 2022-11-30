@@ -17,18 +17,19 @@ How do I use it?
 
 R and preferably RStudio is needed to run the app.
 
+Shiny App Link: http://1n4mp5-yuka0chen.shinyapps.io/NYC-911Calls-Interactive-Analysis
+
+
 How do I get it?
 
 Contacting one of the authors is the best way to receive permission to
 run the app. The files are stored on a shared GitHub account, so the
 authors can grant you access to pull the files to use the app.
 
-Authors: - Yuka Chen - <yc8322a@student.american.edu>
+Authors: 
 
--   Chaytanya Kumar - <ck2340a@student.american.edu>
-
--   Tyler Halliwell - <th3013a@students.american.edu>
-
--   Concillia Mpofu - <cm0789a@students.american.edu>
-
--   Liberty Mudzingwa - <lm7832a@students.american.edu>
+Yuka Chen - yc8322a@american.edu
+Chaytanya Kumar - ck2340a@american.edu
+Tyler Halliwell - th3013a@american.edu
+Concillia Mpofu - cm0789a@american.edu
+Liberty Mudzingwa - lm7832a@american.edu
