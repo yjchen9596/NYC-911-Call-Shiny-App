@@ -29,7 +29,11 @@ authors can grant you access to pull the files to use the app.
 Authors: 
 
 Yuka Chen - yc8322a@american.edu
+
 Chaytanya Kumar - ck2340a@american.edu
+
 Tyler Halliwell - th3013a@american.edu
+
 Concillia Mpofu - cm0789a@american.edu
+
 Liberty Mudzingwa - lm7832a@american.edu
