@@ -13,14 +13,14 @@ The goal of gp-001-ycclt-911calls is to analyze 911 call data sourced by
 the 5 boroughs of NYC. This app will allow you to visualize and
 interpret data and possibly make policy decisions.
 
-How do I use it?
+How can you use it?
 
 R and preferably RStudio is needed to run the app.
 
 Shiny App Link: http://1n4mp5-yuka0chen.shinyapps.io/NYC-911Calls-Interactive-Analysis
 
 
-How do I get it?
+How can you get it?
 
 Contacting one of the authors is the best way to receive permission to
 run the app. The files are stored on a shared GitHub account, so the
