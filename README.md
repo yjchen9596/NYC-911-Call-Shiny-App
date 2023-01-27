@@ -10,10 +10,12 @@ copyright and license notice. Copyright holder name is under Tyler
 Halliwell. <!-- badges: end -->
 
 The goal of 911 Call Shiny app is to analyze 911 call data sourced by
-the 5 boroughs of NYC. This app will allow you to visualize and
-interpret data and possibly make policy decisions.
+the 5 boroughs of NYC. This app will allow you to visualize and interpret data and possibly make policy decisions.
 
-How can you use it?
+----
+
+
+### How can you use it?
 
 Open the link and you will see a interactive website that contain different tab. Each tab has thier own statistical analysis. <br />
 You can play aorund different tab and have an interactive/custmize statistial analysis with your preferrence.
@@ -22,7 +24,7 @@ You can play aorund different tab and have an interactive/custmize statistial an
 
 ---
 
-### Authors 🧑🏻‍💻👩🏾‍💻👨🏼‍💻👨🏽‍💻👨🏿‍💻: 
+### Authors: 🧑🏻‍💻👩🏾‍💻👨🏼‍💻👨🏽‍💻👨🏿‍💻
 
 - Youjia Chen <br />
 [![EmailYC](https://custom-icon-badges.demolab.com/badge/-Email%20Yuka-teal?style=for-the-badge&logo=mail&logoColor=white)](mailto:mailto:yjchen9596@gmail,com?subject=Contact%20from%20GitHub%20about%20ShinyApp&body=Hi%20Yuka,%0A%0AI%20am%20reaching%20out%20because%20.%20.%20.)
