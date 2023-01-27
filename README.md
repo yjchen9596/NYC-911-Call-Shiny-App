@@ -26,18 +26,15 @@ You can play aorund different tab and have an interactive/custmize statistial an
 
 - Youjia Chen
 [![EmailYC](https://custom-icon-badges.demolab.com/badge/-Email%20Yuka-teal?style=for-the-badge&logo=mail&logoColor=white)](mailto:mailto:yjchen9596@gmail,com?subject=Contact%20from%20GitHub%20about%20ShinyApp&body=Hi%20Yuka,%0A%0AI%20am%20reaching%20out%20because%20.%20.%20.)
-< br />
+<br />
 
 - Chaytanya Kumar
-[![EmailCK](https://custom-icon-badges.demolab.com/badge/-Email%20Chaytanya-teal?style=for-the-badge&logo=mail&logoColor=white)](mailto:ck2340a@american.edu?subject=Contact%20from%20GitHub%20about%20ShinyApp&body=Hi%20Chaytanya,%0A%0AI%20am%20reaching%20out%20because%20.%20.%20.)
-< br />
+[![EmailCK](https://custom-icon-badges.demolab.com/badge/-Email%20Chaytanya-teal?style=for-the-badge&logo=mail&logoColor=white)](mailto:ck2340a@american.edu?subject=Contact%20from%20GitHub%20about%20ShinyApp&body=Hi%20Chaytanya,%0A%0AI%20am%20reaching%20out%20because%20.%20.%20.) < br />
 - Tyler Halliwell
-[![Email](https://custom-icon-badges.demolab.com/badge/-Email%20Tyler-teal?style=for-the-badge&logo=mail&logoColor=white)](mailto:th3013a@american.edu?subject=Contact%20from%20GitHub%20about%20ShinyApp&body=Hi%20Tyler,%0A%0AI%20am%20reaching%20out%20because%20.%20.%20.)
-< br />
+[![Email](https://custom-icon-badges.demolab.com/badge/-Email%20Tyler-teal?style=for-the-badge&logo=mail&logoColor=white)](mailto:th3013a@american.edu?subject=Contact%20from%20GitHub%20about%20ShinyApp&body=Hi%20Tyler,%0A%0AI%20am%20reaching%20out%20because%20.%20.%20.)< br />
 
 - Concillia Mpofu
-[![Email](https://custom-icon-badges.demolab.com/badge/-Email%20Chinnie-teal?style=for-the-badge&logo=mail&logoColor=white)](mailto:cm0789a@american.edu?subject=Contact%20from%20GitHub%20about%20ShinyApp&body=Hi%20Connie,%0A%0AI%20am%20reaching%20out%20because%20.%20.%20.)
-< br />
+[![Email](https://custom-icon-badges.demolab.com/badge/-Email%20Chinnie-teal?style=for-the-badge&logo=mail&logoColor=white)](mailto:cm0789a@american.edu?subject=Contact%20from%20GitHub%20about%20ShinyApp&body=Hi%20Connie,%0A%0AI%20am%20reaching%20out%20because%20.%20.%20.)< br />
 
 - Liberty Mudzingwa
 [![Email](https://custom-icon-badges.demolab.com/badge/-Email%20Liberty-teal?style=for-the-badge&logo=mail&logoColor=white)](mailto:lm7832a@american.edu?subject=Contact%20from%20GitHub%20about%20ShinyApp&body=Hi%20Chaytanya,%0A%0AI%20am%20reaching%20out%20because%20.%20.%20.)
