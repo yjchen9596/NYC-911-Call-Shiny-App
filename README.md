@@ -9,7 +9,7 @@ An MIT license was used for this app. This requires preservation of
 copyright and license notice. Copyright holder name is under Tyler
 Halliwell. <!-- badges: end -->
 
-The goal of gp-001-ycclt-911calls is to analyze 911 call data sourced by
+The goal of 911 Call Shiny app is to analyze 911 call data sourced by
 the 5 boroughs of NYC. This app will allow you to visualize and
 interpret data and possibly make policy decisions.
 
