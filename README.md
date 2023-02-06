@@ -20,6 +20,11 @@ You can play aorund different tab and have an interactive/custmize statistial an
 
 [![ShinyApp](https://custom-icon-badges.demolab.com/badge/App%20Link-purple.svg?logo=dependabot)](http://1n4mp5-yuka0chen.shinyapps.io/NYC-911Calls-Interactive-Analysis)
 
+
+![Shiny App](https://github.com/yjchen9596/NYC-911-Call-Shiny-App/blob/main/Images%20of%20Shiny%20App/1.About%20the%20NYPPA%20App.png?raw=true)
+
+
+
 ---
 
 ### Authors: 🧑🏻‍💻👩🏾‍💻👨🏼‍💻👨🏽‍💻👨🏿‍💻
