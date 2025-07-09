@@ -21,8 +21,6 @@ You can play aorund different tab and have an interactive/custmize statistial an
 [![ShinyApp](https://custom-icon-badges.demolab.com/badge/App%20Link-purple.svg?logo=dependabot)](https://yukachen.shinyapps.io/NYC-911Calls-Interactive-Analysis/)
 
 
-![Shiny App](https://yukachen.shinyapps.io/NYC-911Calls-Interactive-Analysis/)
-
 
 
 ---
